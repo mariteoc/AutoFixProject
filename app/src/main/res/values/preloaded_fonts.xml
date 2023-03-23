@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/acme</item>
+        <item>@font/alata</item>
+        <item>@font/amita</item>
+        <item>@font/gaegu_light</item>
+        <item>@font/gentium_basic_bold</item>
+        <item>@font/prompt</item>
+        <item>@font/sintony_bold</item>
+        <item>@font/space_mono</item>
+        <item>@font/wendy_one</item>
+    </array>
+</resources>
