@@ -16,12 +16,28 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        //getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionBar)));
         Button login = findViewById(R.id.btnLogin);
+        Button btnRegister = findViewById(R.id.btnRegister);
         Intent intent = getIntent();
         if(intent!=null){
             user = intent.getStringExtra("USERTYPE");
         }
+
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent regIntent = new Intent();
+                if(user.equals("Customer")){
+                    regIntent = new Intent(Login.this, CustomerProfile.class);
+                }
+                else if(user.equals("Provider")){
+                    regIntent = new Intent(Login.this, RegisterServProvider.class);
+                }
+                regIntent.putExtra("REG", 1);
+                startActivity(regIntent);
+            }
+        });
 
 
         login.setOnClickListener(new View.OnClickListener() {

@@ -60,7 +60,7 @@ public class ProviderMenu extends AppCompatActivity {
                         startActivity(new Intent(ProviderMenu.this,ServiceReport.class));
                         break;
                     case 5:
-                        startActivity(new Intent(ProviderMenu.this,Login.class));
+                        startActivity(new Intent(ProviderMenu.this,MainActivity.class));
                         break;
                 }
             }

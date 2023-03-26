@@ -27,7 +27,9 @@ public class Users extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()) {
             case R.id.add:
-                startActivity(new Intent(Users.this, IndividualUser.class));
+                Intent intent =new Intent(Users.this, IndividualUser.class);
+                intent.putExtra("REG", 2);
+                startActivity(intent);
                 return true;
             case R.id.menu:
                 startActivity(new Intent(Users.this, ProviderMenu.class));
@@ -37,13 +39,6 @@ public class Users extends AppCompatActivity {
         }
 
         }
-//        if (item.getItemId() == R.id.menu){
-//            startActivity(new Intent(Users.this, ProviderMenu.class));
-//            return true;
-//        }
-//        else{
-//            Toast.makeText(Users.this,"Action not identified",Toast.LENGTH_SHORT).show();
-//            return false;
-//        }
+
 
 }
