@@ -2,8 +2,10 @@ package com.example.autofix;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,16 +23,20 @@ public class BookAppointment extends AppCompatActivity {
     String str="";
     StringBuilder date = new StringBuilder();
     String selectedTime;
+    DatabaseHelper databaseHelper;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_appointment);
         Spinner time = findViewById(R.id.spinnerTime);
-        Button btnbook = findViewById(R.id.btnBook);
+        Button btnBook = findViewById(R.id.btnBook);
         Switch drop = findViewById(R.id.switchDrop);
         Switch pickup = findViewById(R.id.switchPick);
         CalendarView calendar = findViewById(R.id.calendarView);
+        databaseHelper = new DatabaseHelper(this);
+        //sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -41,7 +47,8 @@ public class BookAppointment extends AppCompatActivity {
             }
         });
 
-        btnbook.setOnClickListener(new View.OnClickListener() {
+        btnBook.setOnClickListener(new View.OnClickListener() {
+            boolean isCreated;
             @Override
             public void onClick(View view) {
                 if(drop.isChecked()){
@@ -64,7 +71,9 @@ public class BookAppointment extends AppCompatActivity {
                 else{
                     selectedTime = time.getSelectedItem().toString();
                 }
-//                Toast.makeText(BookAppointment.this,tes,Toast.LENGTH_SHORT).show();
+
+
+
 
 
 

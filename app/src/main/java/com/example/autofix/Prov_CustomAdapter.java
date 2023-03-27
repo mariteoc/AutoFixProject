@@ -17,24 +17,27 @@ import java.util.Locale;
 
 public class Prov_CustomAdapter extends RecyclerView.Adapter<Prov_CustomAdapter.MyViewHolder> implements Filterable {
 
+    final RecyclerViewInt recyclerViewInt;
     Context context;
     ArrayList<ProvidersModel> providersModels;
     ArrayList<ProvidersModel> providersModelsFull;
 
 
-    public Prov_CustomAdapter(Context context, ArrayList<ProvidersModel> providersModels){
+    public Prov_CustomAdapter(Context context, ArrayList<ProvidersModel> providersModels,
+                              RecyclerViewInt recyclerViewInterface){
         this.context = context;
         this.providersModels = providersModels;
         providersModelsFull = new ArrayList<>(providersModels);
-
+        this.recyclerViewInt = recyclerViewInterface;
     }
+
 
     @NonNull
     @Override
     public Prov_CustomAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from (context);
         View view = inflater.inflate(R.layout.servprov_item,parent,false);
-        return new Prov_CustomAdapter.MyViewHolder(view);
+        return new Prov_CustomAdapter.MyViewHolder(view,recyclerViewInt);
     }
 
     @Override
@@ -53,11 +56,23 @@ public class Prov_CustomAdapter extends RecyclerView.Adapter<Prov_CustomAdapter.
         TextView txtViewName;
         TextView txtViewData;
 
-        public MyViewHolder(@NonNull View itemView){
+        public MyViewHolder(@NonNull View itemView, RecyclerViewInt recyclerViewInt){
             super(itemView);
 
             txtViewName = itemView.findViewById(R.id.txtProvider);
             txtViewData = itemView.findViewById(R.id.txtProvData);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(recyclerViewInt != null){
+                        int pos = getBindingAdapterPosition();
+
+                        if(pos != RecyclerView.NO_POSITION){
+                            recyclerViewInt.onItemClick(pos);
+                        }
+                    }
+                }
+            });
         }
     }
 
@@ -77,7 +92,7 @@ public class Prov_CustomAdapter extends RecyclerView.Adapter<Prov_CustomAdapter.
                 String filterPattern = charSequence.toString().toLowerCase().trim();
 
                 for(ProvidersModel provider : providersModelsFull){
-                    if(provider.getProvCity().toLowerCase().contains(filterPattern)){
+                    if(provider.getProvCity().toLowerCase().startsWith(filterPattern)){
                         filteredList.add(provider);
                     }
                 }

@@ -122,7 +122,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else
             return false;
     }
-    public boolean addService(String sName, String sProviderId, String sPrice, String sDesc){
+    public boolean addService(String sName, int sProviderId, String sPrice, String sDesc){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(SERVICE_NAME, sName);

@@ -54,7 +54,7 @@ public class ProviderMenu extends AppCompatActivity {
                         startActivity(new Intent(ProviderMenu.this,Reminders.class));
                         break;
                     case 3:
-                        startActivity(new Intent(ProviderMenu.this,ServiceDetails.class));
+                        startActivity(new Intent(ProviderMenu.this,IndividualService.class));
                         break;
                     case 4:
                         startActivity(new Intent(ProviderMenu.this,ServiceReport.class));

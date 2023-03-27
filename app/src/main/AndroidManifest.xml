@@ -33,9 +33,6 @@
             android:name=".IndividualService"
             android:exported="false" />
         <activity
-            android:name=".ServiceDetails"
-            android:exported="false" />
-        <activity
             android:name=".Reminders"
             android:exported="false" />
         <activity
