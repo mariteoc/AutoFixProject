@@ -7,12 +7,52 @@
     android:layout_height="match_parent"
     tools:context=".IndividualUser">
 
+    <Button
+        android:id="@+id/btnUserSave"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="54dp"
+        android:background="@drawable/button_bg"
+        android:text="@string/btnSave"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editUserCity" />
+
+    <EditText
+        android:id="@+id/editEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginBottom="15dp"
+        android:ems="10"
+        android:enabled="false"
+        android:hint="@string/hint10"
+        android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toTopOf="@+id/editUserAdd"
+        app:layout_constraintStart_toStartOf="@+id/editCellNumb"
+        app:layout_constraintTop_toBottomOf="@+id/editCellNumb" />
+
+    <EditText
+        android:id="@+id/editUserAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        android:ems="10"
+        android:enabled="false"
+        android:hint="@string/hint9"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/editUserCity"
+        app:layout_constraintStart_toStartOf="@+id/editEmail"
+        app:layout_constraintTop_toBottomOf="@+id/editEmail" />
+
     <EditText
         android:id="@+id/editUserN"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginTop="74dp"
-        android:layout_marginBottom="17dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginBottom="15dp"
         android:ems="10"
         android:enabled="false"
         android:hint="@string/hint6"
@@ -21,71 +61,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnUserSave"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="52dp"
-        android:background="@drawable/button_bg"
-        android:text="@string/btnSave"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editEmail" />
-
-    <EditText
-        android:id="@+id/editEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginBottom="35dp"
-        android:ems="10"
-        android:enabled="false"
-        android:hint="@string/hint10"
-        android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/btnUserSave"
-        app:layout_constraintStart_toStartOf="@+id/editUserAdd"
-        app:layout_constraintTop_toBottomOf="@+id/editUserAdd" />
-
-    <EditText
-        android:id="@+id/editUserAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginBottom="23dp"
-        android:ems="10"
-        android:enabled="false"
-        android:hint="@string/hint9"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editEmail"
-        app:layout_constraintStart_toStartOf="@+id/editCellNumb"
-        app:layout_constraintTop_toBottomOf="@+id/editCellNumb" />
-
-    <EditText
-        android:id="@+id/editCellNumb"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginBottom="19dp"
-        android:ems="10"
-        android:enabled="false"
-        android:hint="@string/hint8"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editUserAdd"
-        app:layout_constraintStart_toStartOf="@+id/editFullN"
-        app:layout_constraintTop_toBottomOf="@+id/editFullN" />
-
-    <EditText
-        android:id="@+id/editFullN"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginBottom="18dp"
-        android:ems="10"
-        android:enabled="false"
-        android:hint="@string/hint7"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editCellNumb"
-        app:layout_constraintStart_toStartOf="@+id/editPassword"
-        app:layout_constraintTop_toBottomOf="@+id/editPassword" />
 
     <EditText
         android:id="@+id/editPassword"
@@ -99,4 +74,47 @@
         app:layout_constraintBottom_toTopOf="@+id/editFullN"
         app:layout_constraintStart_toStartOf="@+id/editUserN"
         app:layout_constraintTop_toBottomOf="@+id/editUserN" />
+
+    <EditText
+        android:id="@+id/editFullN"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="17dp"
+        android:ems="10"
+        android:enabled="false"
+        android:hint="@string/hint7"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/editCellNumb"
+        app:layout_constraintStart_toStartOf="@+id/editCellNumb"
+        app:layout_constraintTop_toBottomOf="@+id/editPassword" />
+
+    <EditText
+        android:id="@+id/editUserCity"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="30dp"
+        android:ems="10"
+        android:enabled="false"
+        android:hint="@string/txtCity"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/btnUserSave"
+        app:layout_constraintEnd_toEndOf="@+id/editUserAdd"
+        app:layout_constraintTop_toBottomOf="@+id/editUserAdd" />
+
+    <EditText
+        android:id="@+id/editCellNumb"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginBottom="21dp"
+        android:ems="10"
+        android:enabled="false"
+        android:hint="@string/hint3"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/editEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editFullN" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -14,7 +16,7 @@ import android.widget.Toast;
 
 public class RegisterServProvider extends AppCompatActivity {
 
-    DatabaseHelperOld databaseHelperOld;
+    DatabaseHelper databaseHelper;
     StringBuilder message= new StringBuilder();
 
     @Override
@@ -26,7 +28,9 @@ public class RegisterServProvider extends AppCompatActivity {
         EditText city = findViewById(R.id.editProvCity);
         Button btnSave = findViewById(R.id.btnProvSave);
         Button btnCreate = findViewById(R.id.btnCreateUser);
-        databaseHelperOld = new DatabaseHelperOld(this);
+        databaseHelper = new DatabaseHelper(this);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Error!");
         builder.setMessage(message);
@@ -42,9 +46,11 @@ public class RegisterServProvider extends AppCompatActivity {
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(RegisterServProvider.this, IndividualUser.class);
-                intent.putExtra("REG", 1);
-                startActivity(intent);
+                editor.putString("ACTION", "REG");
+                editor.commit();
+//                Intent intent = new Intent(RegisterServProvider.this, IndividualUser.class);
+//                intent.putExtra("REG", 1);
+                startActivity(new Intent(RegisterServProvider.this, IndividualUser.class));
             }
         });
 
@@ -68,7 +74,7 @@ public class RegisterServProvider extends AppCompatActivity {
                     message.setLength(0);
                 }
                 else{
-                    isInserted = databaseHelperOld.addServProvData(serviceProvider.getText().toString(),
+                    isInserted = databaseHelper.addServiceProvider(serviceProvider.getText().toString(),
                             phone.getText().toString(),city.getText().toString());
                     if(isInserted){
                         Toast.makeText(RegisterServProvider.this,"Service Provider Saved", Toast.LENGTH_SHORT).show();

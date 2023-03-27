@@ -50,6 +50,9 @@
     <string name="ServPhoneNumb">Enter the phone number</string>
     <string name="ProvCity">Enter the city</string>
     <string name="btnCreateUser">Create an initial User</string>
+    <string name="hintSearch">Search for a city...</string>
+    <string name="txtApp">AutoFix</string>
+    <string name="imgDesc">A logo image</string>
     <string-array name="hours">
         <item>Select a time</item>
         <item>09:00-10:00</item>

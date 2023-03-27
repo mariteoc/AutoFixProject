@@ -2,6 +2,7 @@ package com.example.autofix;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -12,11 +13,13 @@ import kotlin.jvm.internal.TypeParameterReference;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
 
-    final static String DATABASE_NAME = "AutoFix.db";
+    final static String DATABASE_NAME = "AutoFixApp.db";
     final static int DATABASE_VERSION = 1;
     final static String USER_TABLE = "user";
     final static String APPOINTMENT_TABLE = "appointment";
     final static String SERVICE_TABLE = "service";
+
+    final static String SERV_PROVIDER_TABLE = "ServiceProvider";
 
     final static String ID = "id";
     final static String USERNAME = "username";
@@ -42,6 +45,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     final static String SERVICE_PROVIDER_ID = "provider_id";
     final static String SERVICE_PRICE = "price";
     final static String SERVICE_DESC = "description";
+
+
+
+    final static String PROVIDERID = "ProviderID";
+    final static String PROVIDERNAME = "ServProviderName";
+    final static String PROV_PHONE = "PhoneNumber";
+    final static String PROV_CITY = "City";
 
     public DatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -78,6 +88,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + TIME + " TEXT,"
                 + APP_TYPE + " INTEGER"
                 + ")";
+        sqLiteDatabase.execSQL(query);
+        query = "CREATE TABLE " + SERV_PROVIDER_TABLE + "("
+                + PROVIDER_ID + " INTEGER PRIMARY KEY,"
+                + PROVIDERNAME + " TEXT,"
+                + PROV_PHONE + " TEXT,"
+                +PROV_CITY + " TEXT)";
         sqLiteDatabase.execSQL(query);
     }
 
@@ -134,6 +150,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else
             return false;
 
+    }
+
+    public boolean addServiceProvider(String provName, String phone, String city){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(PROVIDERNAME, provName);
+        values.put(PROV_PHONE,phone);
+        values.put(PROV_CITY,city);
+        long l = sqLiteDatabase.insert(SERV_PROVIDER_TABLE,null, values);
+        if(l>0)
+            return true;
+        else
+            return false;
+    }
+
+    public Cursor verifyUser(String uName){
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        String query = "SELECT username,password,type FROM " + USER_TABLE
+                + " WHERE username = ?";
+        Cursor cursor = sqLiteDatabase.rawQuery(query,new String[]{uName});
+        return cursor;
+    }
+
+    public Cursor selectAllProviders(){
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        String query = "SELECT * FROM " + SERV_PROVIDER_TABLE;
+        Cursor cursor = sqLiteDatabase.rawQuery(query,null);
+        return cursor;
     }
 
 

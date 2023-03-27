@@ -3,7 +3,9 @@ package com.example.autofix;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -23,6 +25,8 @@ public class CustomerMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_menu);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
         ArrayList<HashMap<String, String>> options = new ArrayList<>();
 
@@ -46,10 +50,13 @@ public class CustomerMenu extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 switch (position){
                     case 0:
-                        startActivity(new Intent(CustomerMenu.this,CustomerProfile.class));
+                        editor.putString("ACTION","VIEW");
+                        editor.commit();
+                        startActivity(new Intent(CustomerMenu.this,IndividualUser.class));
                         break;
                     case 1:
-                        startActivity(new Intent(CustomerMenu.this,ServiceProviders.class));
+                        //startActivity(new Intent(CustomerMenu.this,ServiceProviders.class));
+                        startActivity(new Intent(CustomerMenu.this,ServProviders.class));
                         break;
                     case 2:
                         startActivity(new Intent(CustomerMenu.this,BookAppointment.class));

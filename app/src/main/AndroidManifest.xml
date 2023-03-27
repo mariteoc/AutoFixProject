@@ -12,6 +12,18 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
+            android:name=".SplashScreen"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ServProviders"
+            android:exported="false" />
+        <activity
             android:name=".RegisterServProvider"
             android:exported="false" />
         <activity
@@ -46,9 +58,6 @@
             android:exported="false" />
         <activity
             android:name=".ServiceProviders"
-            android:exported="false" />
-        <activity
-            android:name=".CustomerProfile"
             android:exported="false" />
         <activity
             android:name=".Appointments"

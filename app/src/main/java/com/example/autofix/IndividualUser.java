@@ -3,7 +3,9 @@ package com.example.autofix;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -12,16 +14,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class IndividualUser extends AppCompatActivity {
 
-    int reg;
+    DatabaseHelper databaseHelper;
+
+    String action;
     EditText fullName;
     EditText cell;
     EditText address;
     EditText email;
     EditText username;
     EditText pass;
+    EditText city;
+    String userType;
 
 
     @Override
@@ -34,83 +41,112 @@ public class IndividualUser extends AppCompatActivity {
         email = findViewById(R.id.editEmail);
         username = findViewById(R.id.editUserN);
         pass = findViewById(R.id.editPassword);
+        city = findViewById(R.id.editUserCity);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        userType = sharedPreferences.getString("USERTYPE","");
         Button btnSave = findViewById(R.id.btnUserSave);
-        Intent intent = getIntent();
-        if(intent != null){
-            reg = intent.getIntExtra("REG",0);
-        }
+        databaseHelper = new DatabaseHelper(this);
+        action = sharedPreferences.getString("ACTION","");
 
-        if(reg == 1 || reg == 2) {
+
+        if (action.equals("REG") || action.equals("EDIT")) {
             username.setEnabled(true);
             pass.setEnabled(true);
             fullName.setEnabled(true);
             cell.setEnabled(true);
             address.setEnabled(true);
             email.setEnabled(true);
+            city.setEnabled(true);
         }
 
         btnSave.setOnClickListener(new View.OnClickListener() {
+            boolean isInserted;
             @Override
             public void onClick(View view) {
-                if(areEditTextsFilled()){
+                if (areEditTextsFilled()) {
+                    isInserted = databaseHelper.addUser(
+                            username.getText().toString(),
+                            pass.getText().toString(),
+                            fullName.getText().toString(),
+                            email.getText().toString(),
+                            cell.getText().toString(),
+                            userType,
+                            address.getText().toString(),
+                            city.getText().toString());
+                    if (isInserted) {
+                        Toast.makeText(IndividualUser.this, "User added", Toast.LENGTH_SHORT).show();
+                        if(userType.equals("Provider")){
+                            startActivity(new Intent(IndividualUser.this, ProviderMenu.class));
+                        }
+                        else{
+                            startActivity(new Intent(IndividualUser.this, CustomerMenu.class));
+                        }
 
+                    } else {
+                        Toast.makeText(IndividualUser.this, "Error to add the User", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(IndividualUser.this, "Make sure all fields were filled", Toast.LENGTH_SHORT).show();
                 }
-                else{
-
-                }
-
-
             }
         });
-
-
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        MenuInflater inflater = getMenuInflater();
-        if(reg ==0){
-            inflater.inflate(R.menu.menu,menu);
-            inflater.inflate(R.menu.edit_delete,menu);
-            return true;
-        } else if (reg == 2) {
-            inflater.inflate(R.menu.menu,menu);
-            return true;
-        } else{
-            return false;
-        }
+        @Override
+        public boolean onCreateOptionsMenu (Menu menu){
+            MenuInflater inflater = getMenuInflater();
 
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-            case R.id.edit:
-                fullName.setEnabled(true);
-                pass.setEnabled(true);
-                cell.setEnabled(true);
-                address.setEnabled(true);
-                email.setEnabled(true);
+            if (action.equals("VIEW")) {
+                inflater.inflate(R.menu.menu, menu);
+                inflater.inflate(R.menu.edit_delete, menu);
                 return true;
-            case R.id.menu:
-                startActivity(new Intent(IndividualUser.this, ProviderMenu.class));
+            }
+             else if (action.equals("EDIT")) {
+                inflater.inflate(R.menu.menu, menu);
                 return true;
-            default:
+            }
+            else{
                 return false;
-        }
-    }
+            }
 
-    public boolean areEditTextsFilled(){
+
+        }
+
+        @Override
+        public boolean onOptionsItemSelected (MenuItem item){
+
+            switch (item.getItemId()) {
+                case R.id.edit:
+                    fullName.setEnabled(true);
+                    pass.setEnabled(true);
+                    cell.setEnabled(true);
+                    address.setEnabled(true);
+                    email.setEnabled(true);
+                    city.setEnabled(true);
+                    return true;
+                case R.id.menu:
+                    if(userType.equals("Provider")){
+
+                        startActivity(new Intent(IndividualUser.this, ProviderMenu.class));
+                    }
+                    else if(userType.equals("Customer")){
+                        startActivity(new Intent(IndividualUser.this, CustomerMenu.class));
+                    }
+                    return true;
+                default:
+                    return false;
+            }
+        }
+    public boolean areEditTextsFilled () {
         boolean areFilled = true;
         ViewGroup viewGroup = findViewById(R.id.indiv_user);
 
-        for(int i=0;i < viewGroup.getChildCount();i++){
+        for (int i = 0; i < viewGroup.getChildCount(); i++) {
             View view = viewGroup.getChildAt(i);
 
-            if(view instanceof EditText){
+            if (view instanceof EditText) {
                 String text = ((EditText) view).getText().toString().trim();
-                if(text.isEmpty()){
+                if (text.isEmpty()) {
                     areFilled = false;
                     break;
                 }
@@ -118,4 +154,7 @@ public class IndividualUser extends AppCompatActivity {
         }
         return areFilled;
     }
-}
+
+
+    }
+
