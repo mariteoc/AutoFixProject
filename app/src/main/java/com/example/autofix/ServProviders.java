@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -47,6 +49,7 @@ public class ServProviders extends AppCompatActivity {
 
     private void setUpProvidersModels() {
 
+        String provID;
         String provName;
         String provPhone;
         String provCity;
@@ -54,10 +57,12 @@ public class ServProviders extends AppCompatActivity {
         HashMap<String, HashMap<String, String>> myMap = new HashMap<String, HashMap<String, String>>();
         int counter = 0;
 
+        String proID;
         String name;
         String phone;
         String city;
 
+        ArrayList<String> providerID = new ArrayList<>();
         ArrayList<String> providerNames = new ArrayList<>();
         ArrayList<String> phones = new ArrayList<>();
         ArrayList<String> cities = new ArrayList<>();
@@ -65,14 +70,20 @@ public class ServProviders extends AppCompatActivity {
         Cursor cursor = databaseHelper.selectAllProviders();
         if (cursor.getCount() > 0) {
             while (cursor.moveToNext()) {
+                provID = cursor.getString(0);
                 provName = cursor.getString(1);
                 provPhone = cursor.getString(2);
                 provCity = cursor.getString(3);
                 myMap.put("key" + counter, new HashMap<String, String>());
+                myMap.get("key" + counter).put("provID", provID);
                 myMap.get("key" + counter).put("provName", provName);
                 myMap.get("key" + counter).put("phone", provPhone);
                 myMap.get("key" + counter).put("city", provCity);
                 counter++;
+            }
+            for (int i = 0;i <myMap.size();i++){
+                proID = myMap.get("key" + i).get("provID");
+                providerID.add(proID);
             }
 
             for (int i = 0; i < myMap.size(); i++) {
@@ -97,6 +108,5 @@ public class ServProviders extends AppCompatActivity {
         }
 
     }
-
 
 }

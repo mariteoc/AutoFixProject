@@ -1,6 +1,7 @@
 package com.example.autofix;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +42,7 @@ public class Prov_CustomAdapter extends RecyclerView.Adapter<Prov_CustomAdapter.
     public void onBindViewHolder(@NonNull Prov_CustomAdapter.MyViewHolder holder, int position) {
         holder.txtViewName.setText(providersModels.get(position).getProvName());
         holder.txtViewData.setText(providersModels.get(position).getProvCity() + " -- Phone: " + providersModels.get(position).getProvPhone());
+       // holder.txtViewId.setText(providersModels.get(position).getProvID());
     }
 
     @Override
@@ -52,13 +54,23 @@ public class Prov_CustomAdapter extends RecyclerView.Adapter<Prov_CustomAdapter.
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         TextView txtViewName;
         TextView txtViewData;
+        TextView txtViewID;
 
         public MyViewHolder(@NonNull View itemView){
             super(itemView);
 
+
             txtViewName = itemView.findViewById(R.id.txtProvider);
             txtViewData = itemView.findViewById(R.id.txtProvData);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent();
+                    v.getContext().startActivity(new Intent(v.getContext(),Services.class));
+                }
+            });
         }
+
     }
 
     @Override
