@@ -23,42 +23,42 @@
             android:id="@+id/rdbServ1"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:text="RadioButton"
+            android:text="Oil Change"
             android:textSize="20sp" />
 
         <RadioButton
             android:id="@+id/rdbServ2"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:text="RadioButton"
+            android:text="Filter Change"
             android:textSize="20sp" />
 
         <RadioButton
             android:id="@+id/rdbServ3"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:text="RadioButton"
+            android:text="Car Wash"
             android:textSize="20sp" />
 
         <RadioButton
             android:id="@+id/rdbServ4"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:text="RadioButton"
+            android:text="Paint Job"
             android:textSize="20sp" />
 
         <RadioButton
             android:id="@+id/rdbServ5"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:text="RadioButton"
+            android:text="Tyre Change"
             android:textSize="20sp" />
 
         <RadioButton
             android:id="@+id/rdbServ6"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:text="RadioButton"
+            android:text="Headlamp Repair"
             android:textSize="20sp" />
     </RadioGroup>
 

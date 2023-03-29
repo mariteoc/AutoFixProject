@@ -42,13 +42,13 @@ public class BookAppointment extends AppCompatActivity {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int dayOfMonth) {
                 date.append(Integer.toString(year) + "-");
-                date.append(Integer.toString(month+1) + "-");
+                date.append(Integer.toString(month) + "-");
                 date.append(Integer.toString(dayOfMonth));
             }
         });
 
         btnBook.setOnClickListener(new View.OnClickListener() {
-            boolean isCreated;
+            boolean isSelected;
             @Override
             public void onClick(View view) {
                 if(drop.isChecked()){
@@ -57,26 +57,28 @@ public class BookAppointment extends AppCompatActivity {
                     meth = "Pick-up";
                 }
                 else{
-                    str+="You should select Drop-off or Pick-up method";
+                    str="You should select Drop-off or Pick-up method";
+                    Toast.makeText(BookAppointment.this,str,Toast.LENGTH_SHORT).show();
                 }
 
                 if(date.length() == 0){
-                    str+="\n" + "You should select a date for the appointment";
+                    str="You should select a date for the appointment";
+                    Toast.makeText(BookAppointment.this,str,Toast.LENGTH_SHORT).show();
                 }
-
+                else{
 
                 if(time.getSelectedItem() == time.getItemAtPosition(0)){
-                    str+= "you should select a valid time";
+                    str="You should select a valid time";
+                    Toast.makeText(BookAppointment.this,str,Toast.LENGTH_SHORT).show();
                 }
                 else{
                     selectedTime = time.getSelectedItem().toString();
+                    str="Appointment booking successful";
+                    Toast.makeText(BookAppointment.this,str,Toast.LENGTH_SHORT).show();
+                   // isSelected = databaseHelper.addAppointment(,intent.getStringExtra("radio"),date,time,meth);
                 }
-
-
-
-
-
-
+               // Toast.makeText(BookAppointment.this,str,Toast.LENGTH_SHORT).show();
+            }
             }
         });
     }
