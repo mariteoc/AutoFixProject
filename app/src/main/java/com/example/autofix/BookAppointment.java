@@ -2,9 +2,10 @@ package com.example.autofix;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SwitchCompat;
+import androidx.preference.PreferenceManager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,22 +19,24 @@ import android.widget.Toast;
 
 public class BookAppointment extends AppCompatActivity {
 
-    DatabaseHelper databaseHelper;
     String meth;
     String str="";
     StringBuilder date = new StringBuilder();
     String selectedTime;
+    DatabaseHelper databaseHelper;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_appointment);
         Spinner time = findViewById(R.id.spinnerTime);
-        Button btnbook = findViewById(R.id.btnBook);
+        Button btnBook = findViewById(R.id.btnBook);
         Switch drop = findViewById(R.id.switchDrop);
         Switch pickup = findViewById(R.id.switchPick);
         CalendarView calendar = findViewById(R.id.calendarView);
-        Intent intent = getIntent();
+        databaseHelper = new DatabaseHelper(this);
+        //sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override

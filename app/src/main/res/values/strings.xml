@@ -35,7 +35,7 @@
     <string name="hint9">Address</string>
     <string name="hint10">E-mail</string>
     <string name="txtService">Service</string>
-    <string name="txtDescription">Description</string>
+    <string name="txtDescription">Service Description</string>
     <string name="txtPrice">Price</string>
     <string name="hintAppNumber">Appointment Number</string>
     <string name="txtServiceProv">Service Provider</string>
@@ -53,6 +53,9 @@
     <string name="hintSearch">Search for a city...</string>
     <string name="txtApp">AutoFix</string>
     <string name="imgDesc">A logo image</string>
+    <string name="hintService">Enter service title</string>
+    <string name="hintDescription">Enter the service description</string>
+    <string name="hintPrice">000.00</string>
     <string-array name="hours">
         <item>Select a time</item>
         <item>09:00-10:00</item>

@@ -90,6 +90,7 @@ public class Login extends AppCompatActivity {
                                     startActivity(new Intent(Login.this, CustomerMenu.class));
                                 } else if (userType.equals("Provider")) {
                                     startActivity(new Intent(Login.this, ProviderMenu.class));
+
                                 }
                             }
                             else {

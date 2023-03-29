@@ -4,9 +4,11 @@ public class ProvidersModel {
     String provName;
     String provCity;
     String provPhone;
+    int provID;
 
 
-    public ProvidersModel(String provName, String provCity, String provPhone) {
+    public ProvidersModel(int provID,String provName, String provCity, String provPhone) {
+        this.provID = provID;
         this.provName = provName;
         this.provCity = provCity;
         this.provPhone = provPhone;
@@ -22,5 +24,9 @@ public class ProvidersModel {
 
     public String getProvPhone() {
         return provPhone;
+    }
+
+    public int getProvID() {
+        return provID;
     }
 }
