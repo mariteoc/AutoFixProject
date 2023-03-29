@@ -105,7 +105,7 @@ public class ServProviders extends AppCompatActivity implements RecyclerViewInt{
 
             for (int i = 0; i < myMap.size(); i++) {
                 id = Integer.parseInt(myMap.get("key" + i).get("provID"));
-                providerIDs.add(id);
+                providerID.add(String.valueOf(id));
             }
 
             for (int i = 0; i < myMap.size(); i++) {
@@ -123,7 +123,7 @@ public class ServProviders extends AppCompatActivity implements RecyclerViewInt{
             }
 
             for(int j = 0;j<providerNames.size();j++){
-                providersModels.add(new ProvidersModel(providerIDs.get(j),providerNames.get(j),
+                providersModels.add(new ProvidersModel(providerID.get(j),providerNames.get(j),
                         cities.get(j),phones.get(j)));
             }
 

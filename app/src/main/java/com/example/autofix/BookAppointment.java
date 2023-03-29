@@ -47,7 +47,7 @@ public class BookAppointment extends AppCompatActivity {
             }
         });
 
-        btnbook.setOnClickListener(new View.OnClickListener() {
+        btnBook.setOnClickListener(new View.OnClickListener() {
             boolean isSelected;
             @Override
             public void onClick(View view) {
