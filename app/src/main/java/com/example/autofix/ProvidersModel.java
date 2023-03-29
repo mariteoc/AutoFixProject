@@ -7,8 +7,8 @@ public class ProvidersModel {
     int provID;
 
 
-    public ProvidersModel(int provID,String provName, String provCity, String provPhone) {
-        this.provID = provID;
+    public ProvidersModel(String provID, String provName, String provCity, String provPhone) {
+        this.provID = Integer.parseInt(provID);
         this.provName = provName;
         this.provCity = provCity;
         this.provPhone = provPhone;

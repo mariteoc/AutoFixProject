@@ -1,6 +1,7 @@
 package com.example.autofix;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +32,6 @@ public class Prov_CustomAdapter extends RecyclerView.Adapter<Prov_CustomAdapter.
         this.recyclerViewInt = recyclerViewInterface;
     }
 
-
     @NonNull
     @Override
     public Prov_CustomAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -55,6 +55,7 @@ public class Prov_CustomAdapter extends RecyclerView.Adapter<Prov_CustomAdapter.
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         TextView txtViewName;
         TextView txtViewData;
+        TextView txtViewID;
 
         public MyViewHolder(@NonNull View itemView, RecyclerViewInt recyclerViewInt){
             super(itemView);
@@ -71,6 +72,13 @@ public class Prov_CustomAdapter extends RecyclerView.Adapter<Prov_CustomAdapter.
                             recyclerViewInt.onItemClick(pos);
                         }
                     }
+                }
+            });
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent();
+                    v.getContext().startActivity(new Intent(v.getContext(),Services.class));
                 }
             });
         }
