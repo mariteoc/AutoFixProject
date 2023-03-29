@@ -48,8 +48,6 @@ public class RegisterServProvider extends AppCompatActivity {
             public void onClick(View view) {
                 editor.putString("ACTION", "REG");
                 editor.commit();
-//                Intent intent = new Intent(RegisterServProvider.this, IndividualUser.class);
-//                intent.putExtra("REG", 1);
                 startActivity(new Intent(RegisterServProvider.this, IndividualUser.class));
             }
         });

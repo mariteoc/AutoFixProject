@@ -76,18 +76,22 @@ public class Login extends AppCompatActivity {
                 else{
                     String pass="";
                     String user = "";
+                    int id=0;
                     Cursor cursor = databaseHelper.verifyUser(username.getText().toString());
                     if(cursor.getCount()>0) {
                         while (cursor.moveToNext()) {
-                            user = cursor.getString(0);
-                            pass = cursor.getString(1);
-                            userType = cursor.getString(2);
+                            id = cursor.getInt(0);
+                            user = cursor.getString(1);
+                            pass = cursor.getString(2);
+                            userType = cursor.getString(3);
                         }
 
                         if (user.equals(username.getText().toString())) {
                             if (pass.equals(password.getText().toString())) {
                                 if (userType.equals("Customer")) {
                                     startActivity(new Intent(Login.this, CustomerMenu.class));
+                                    editor.putInt("USER_ID",id);
+                                    editor.commit();
                                 } else if (userType.equals("Provider")) {
                                     startActivity(new Intent(Login.this, ProviderMenu.class));
 

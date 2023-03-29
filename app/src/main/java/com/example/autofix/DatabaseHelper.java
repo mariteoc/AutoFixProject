@@ -167,7 +167,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor verifyUser(String uName){
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-        String query = "SELECT username,password,type FROM " + USER_TABLE
+        String query = "SELECT id,username,password,type FROM " + USER_TABLE
                 + " WHERE username = ?";
         Cursor cursor = sqLiteDatabase.rawQuery(query,new String[]{uName});
         return cursor;
@@ -178,6 +178,41 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String query = "SELECT * FROM " + SERV_PROVIDER_TABLE;
         Cursor cursor = sqLiteDatabase.rawQuery(query,null);
         return cursor;
+    }
+
+    public Cursor selectAllCustomerUsers(){
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        String query = "SELECT * FROM " + USER_TABLE +
+                " WHERE type ='Customer'";
+        Cursor cursor = sqLiteDatabase.rawQuery(query,null);
+        return cursor;
+    }
+
+    public Cursor selectAUser(int id){
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        String query = "SELECT * FROM " + USER_TABLE +
+                " WHERE id =?";
+        Cursor cursor = sqLiteDatabase.rawQuery(query,new String[]{String.valueOf(id)});
+        return cursor;
+    }
+
+    public boolean updateUser(int id,String uName, String uPass, String fName, String email, String phNum, String uType, String address, String city){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(USERNAME,uName);
+        values.put(PASSWORD,uPass);
+        values.put(FULLNAME,fName);
+        values.put(EMAIL,email);
+        values.put(PHONE,phNum);
+        values.put(ADDRESS,address);
+        values.put(CITY,city);
+        values.put(USER_TYPE,uType);
+        int i = sqLiteDatabase.update(USER_TABLE,
+                values,"Id=?",new String[]{Integer.toString(id)});
+        if(i>0)
+            return true;
+        else
+            return false;
     }
 
 

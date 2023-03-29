@@ -45,7 +45,7 @@ public class ProviderMenu extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 switch (position){
                     case 0:
-                        startActivity(new Intent(ProviderMenu.this,Users.class));
+                        startActivity(new Intent(ProviderMenu.this,All_Users.class));
                         break;
                     case 1:
                         startActivity(new Intent(ProviderMenu.this,Appointments.class));

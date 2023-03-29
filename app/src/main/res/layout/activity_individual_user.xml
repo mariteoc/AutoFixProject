@@ -9,9 +9,9 @@
 
     <Button
         android:id="@+id/btnUserSave"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="54dp"
+        android:layout_width="208dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="55dp"
         android:background="@drawable/button_bg"
         android:text="@string/btnSave"
         android:textColor="@color/white"
@@ -19,6 +19,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editUserCity" />
+
+    <EditText
+        android:id="@+id/editUserCity"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="38dp"
+        android:ems="10"
+        android:enabled="false"
+        android:hint="@string/txtCity"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/btnUserSave"
+        app:layout_constraintStart_toStartOf="@+id/editUserAdd"
+        app:layout_constraintTop_toBottomOf="@+id/editUserAdd" />
 
     <EditText
         android:id="@+id/editEmail"
@@ -38,7 +51,7 @@
         android:id="@+id/editUserAdd"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="17dp"
         android:ems="10"
         android:enabled="false"
         android:hint="@string/hint9"
@@ -51,8 +64,8 @@
         android:id="@+id/editUserN"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginBottom="14dp"
         android:ems="10"
         android:enabled="false"
         android:hint="@string/hint6"
@@ -66,7 +79,7 @@
         android:id="@+id/editPassword"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginBottom="19dp"
+        android:layout_marginBottom="18dp"
         android:ems="10"
         android:enabled="false"
         android:hint="@string/hintPass"
@@ -80,41 +93,27 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="4dp"
-        android:layout_marginBottom="17dp"
+        android:layout_marginBottom="19dp"
         android:ems="10"
         android:enabled="false"
         android:hint="@string/hint7"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/editCellNumb"
-        app:layout_constraintStart_toStartOf="@+id/editCellNumb"
+        app:layout_constraintStart_toStartOf="@+id/editPassword"
         app:layout_constraintTop_toBottomOf="@+id/editPassword" />
-
-    <EditText
-        android:id="@+id/editUserCity"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="30dp"
-        android:ems="10"
-        android:enabled="false"
-        android:hint="@string/txtCity"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/btnUserSave"
-        app:layout_constraintEnd_toEndOf="@+id/editUserAdd"
-        app:layout_constraintTop_toBottomOf="@+id/editUserAdd" />
 
     <EditText
         android:id="@+id/editCellNumb"
         android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginBottom="21dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="20dp"
         android:ems="10"
         android:enabled="false"
         android:hint="@string/hint3"
         android:inputType="number"
         app:layout_constraintBottom_toTopOf="@+id/editEmail"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/editFullN"
         app:layout_constraintTop_toBottomOf="@+id/editFullN" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

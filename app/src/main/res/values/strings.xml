@@ -56,6 +56,7 @@
     <string name="hintService">Enter service title</string>
     <string name="hintDescription">Enter the service description</string>
     <string name="hintPrice">000.00</string>
+    <string name="hintSearchUser">Enter a username ...</string>
     <string-array name="hours">
         <item>Select a time</item>
         <item>09:00-10:00</item>

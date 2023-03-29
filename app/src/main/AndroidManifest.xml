@@ -12,6 +12,9 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
+            android:name=".All_Users"
+            android:exported="false" />
+        <activity
             android:name=".SplashScreen"
             android:exported="true">
             <intent-filter>
@@ -39,9 +42,6 @@
             android:name=".IndividualUser"
             android:exported="false" />
         <activity
-            android:name=".Users"
-            android:exported="false" />
-        <activity
             android:name=".ProviderMenu"
             android:exported="false" />
         <activity
@@ -52,9 +52,6 @@
             android:exported="false" />
         <activity
             android:name=".Services"
-            android:exported="false" />
-        <activity
-            android:name=".ServiceProviders"
             android:exported="false" />
         <activity
             android:name=".Appointments"

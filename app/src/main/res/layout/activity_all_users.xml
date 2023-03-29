@@ -3,12 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ServProviders"
-    tools:layout_editor_absoluteY="81dp">
+    android:layout_height="match_parent">
 
     <androidx.appcompat.widget.SearchView
-        android:id="@+id/searchView"
+        android:id="@+id/searchUsers"
         android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
@@ -16,21 +14,21 @@
         android:layout_marginEnd="3dp"
         android:background="@drawable/search_view_bg"
         app:iconifiedByDefault="false"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        app:layout_constraintBottom_toTopOf="@+id/recView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:queryHint="@string/hintSearch" />
+        app:queryHint="@string/hintSearchUser" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/recView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="22dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+        app:layout_constraintTop_toBottomOf="@+id/searchUsers" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
