@@ -55,11 +55,10 @@ public class CustomerMenu extends AppCompatActivity {
                         startActivity(new Intent(CustomerMenu.this,IndividualUser.class));
                         break;
                     case 1:
-                        //startActivity(new Intent(CustomerMenu.this,ServiceProviders.class));
                         startActivity(new Intent(CustomerMenu.this,ServProviders.class));
                         break;
                     case 2:
-                        startActivity(new Intent(CustomerMenu.this,BookAppointment.class));
+                        startActivity(new Intent(CustomerMenu.this,ServProviders.class));
                         break;
                     case 3:
                         startActivity(new Intent(CustomerMenu.this,Appointments.class));

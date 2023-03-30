@@ -10,4 +10,5 @@
     <color name="actionBar">#8BC34A</color>
     <color name="myBlue">#97D0E9</color>
     <color name="user_bg">#2F4858</color>
+    <color name="serv_text">#0B2171</color>
 </resources>

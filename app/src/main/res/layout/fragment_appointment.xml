@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    tools:context=".AppointmentFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="369dp"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtAppDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#CCD6C0"
+            android:gravity="center_horizontal|center_vertical"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:text="2023-03-29  09:00"
+            android:textAlignment="center"
+            android:textColor="#0C0C0C"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtAppService"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#CCD6C0"
+            android:gravity="center_horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="Service"
+            android:textColor="#050505"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/txtAppType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#CCD6C0"
+            android:gravity="center_horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="Drop-off/Pick-up"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/txtAppProvider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#CCD6C0"
+            android:gravity="center_horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="ProviderName"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/txtProvCity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#CCD6C0"
+            android:gravity="center_horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="20dp"
+            android:text="ProviderCity"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+</FrameLayout>

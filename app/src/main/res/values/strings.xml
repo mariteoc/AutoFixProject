@@ -8,7 +8,7 @@
     <string name="btnLogin">Login</string>
     <string name="btnRegister">Register</string>
     <string name="txtForgot">Forgot your password?</string>
-    <string name="txtTitle">Next service appointments</string>
+    <string name="btnAppointment">Appointment details</string>
     <string name="btnSave">Save</string>
     <string name="btnEdit">Edit</string>
     <string name="hint1">Username</string>
@@ -69,4 +69,7 @@
         <item>16:00-17:00</item>
         <item>17:00-18:00</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btnService">Service Details</string>
 </resources>

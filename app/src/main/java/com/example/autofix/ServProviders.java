@@ -33,6 +33,7 @@ public class ServProviders extends AppCompatActivity implements RecyclerViewInt{
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         editor = sharedPreferences.edit();
         databaseHelper= new DatabaseHelper(this);
+        setTitle("Service Providers");
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         setUpProvidersModels();
         Prov_CustomAdapter adapter = new Prov_CustomAdapter(this,providersModels,this);
@@ -134,7 +135,7 @@ public class ServProviders extends AppCompatActivity implements RecyclerViewInt{
 
     @Override
     public void onItemClick(int position) {
-        Intent intent = new Intent(ServProviders.this, BookAppointment.class);
+        Intent intent = new Intent(ServProviders.this, Services.class);
         editor.putInt("PROV_ID", providersModels.get(position).getProvID());
         editor.apply();
         startActivity(intent);

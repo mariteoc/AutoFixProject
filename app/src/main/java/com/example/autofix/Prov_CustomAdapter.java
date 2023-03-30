@@ -74,13 +74,7 @@ public class Prov_CustomAdapter extends RecyclerView.Adapter<Prov_CustomAdapter.
                     }
                 }
             });
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent();
-                    v.getContext().startActivity(new Intent(v.getContext(),Services.class));
-                }
-            });
+
         }
     }
 

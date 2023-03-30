@@ -2,71 +2,29 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/services"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Services">
 
     <RadioGroup
         android:id="@+id/rdGroup"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="151dp"
+        android:layout_height="380dp"
         android:layout_marginStart="73dp"
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="66dp"
         android:layout_marginEnd="73dp"
-        android:layout_marginBottom="21dp"
+        android:layout_marginBottom="37dp"
         app:layout_constraintBottom_toTopOf="@+id/btnNext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <RadioButton
-            android:id="@+id/rdbServ1"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:text="Oil Change"
-            android:textSize="20sp" />
-
-        <RadioButton
-            android:id="@+id/rdbServ2"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:text="Filter Change"
-            android:textSize="20sp" />
-
-        <RadioButton
-            android:id="@+id/rdbServ3"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:text="Car Wash"
-            android:textSize="20sp" />
-
-        <RadioButton
-            android:id="@+id/rdbServ4"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:text="Paint Job"
-            android:textSize="20sp" />
-
-        <RadioButton
-            android:id="@+id/rdbServ5"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:text="Tyre Change"
-            android:textSize="20sp" />
-
-        <RadioButton
-            android:id="@+id/rdbServ6"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:text="Headlamp Repair"
-            android:textSize="20sp" />
-    </RadioGroup>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnNext"
         android:layout_width="162dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="98dp"
+        android:layout_marginBottom="46dp"
         android:background="@drawable/button_bg"
         android:text="@string/btnNext"
         android:textColor="@color/white"
@@ -75,4 +33,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rdGroup" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

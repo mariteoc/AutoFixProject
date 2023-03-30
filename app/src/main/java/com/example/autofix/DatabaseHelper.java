@@ -135,16 +135,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else
             return false;
     }
-    public boolean addAppointment(String userId, String providerId, String serviceId, String date, String time, String aType){
+    public boolean addAppointment(int userId, int providerId, int serviceId, String date, String time, String aType){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(USER_ID,userId);
         values.put(PROVIDER_ID, providerId);
-        values.put(SERVICE_ID, serviceId);
+        values.put(SERVICE1_ID, serviceId);
         values.put(DATE, date);
         values.put(TIME, time);
         values.put(APP_TYPE,aType);
-        long l =sqLiteDatabase.insert(SERVICE_TABLE,null,values);
+        long l =sqLiteDatabase.insert(APPOINTMENT_TABLE,null,values);
         if(l>0)
             return true;
         else
@@ -170,6 +170,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String query = "SELECT id,username,password,type FROM " + USER_TABLE
                 + " WHERE username = ?";
         Cursor cursor = sqLiteDatabase.rawQuery(query,new String[]{uName});
+        return cursor;
+    }
+
+    public Cursor selectProviderServices(int provID){
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        String query = "SELECT service_id,name FROM " + SERVICE_TABLE
+                + " WHERE provider_id = ?";
+        Cursor cursor = sqLiteDatabase.rawQuery(query,new String[]{String.valueOf(provID)});
         return cursor;
     }
 
@@ -213,6 +221,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
         else
             return false;
+    }
+
+    public Cursor selectCustomerAppointments(int uID){
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        String query = "SELECT * FROM " + APPOINTMENT_TABLE +
+                " WHERE user_id =?";
+        Cursor cursor = sqLiteDatabase.rawQuery(query,new String[]{String.valueOf(uID)});
+        return cursor;
     }
 
 

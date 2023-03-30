@@ -15,16 +15,20 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Calendar;
 
 public class BookAppointment extends AppCompatActivity {
 
-    String meth;
+    String meth, date;
     String str="";
-    StringBuilder date = new StringBuilder();
+    StringBuilder dateBuilder = new StringBuilder();
     String selectedTime;
     DatabaseHelper databaseHelper;
     SharedPreferences sharedPreferences;
+    int userID, provID, service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,14 +40,32 @@ public class BookAppointment extends AppCompatActivity {
         Switch pickup = findViewById(R.id.switchPick);
         CalendarView calendar = findViewById(R.id.calendarView);
         databaseHelper = new DatabaseHelper(this);
-        //sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        Intent intent = getIntent();
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+        userID = sharedPreferences.getInt("USER_ID",0);
+        provID = sharedPreferences.getInt("PROV_ID",0);
+        service = intent.getIntExtra("SERV_ID",0);
 
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int dayOfMonth) {
-                date.append(Integer.toString(year) + "-");
-                date.append(Integer.toString(month) + "-");
-                date.append(Integer.toString(dayOfMonth));
+                Calendar selectedDate = Calendar.getInstance();
+                selectedDate.set(year,month,dayOfMonth);
+
+                Calendar currentDate = Calendar.getInstance();
+                if(selectedDate.before(currentDate)){
+                    Toast.makeText(BookAppointment.this,"Please select a date later than today",
+                            Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    dateBuilder.append(Integer.toString(year) + "-");
+                    dateBuilder.append(Integer.toString(month+1) + "-");
+                    dateBuilder.append(Integer.toString(dayOfMonth));
+                    date = String.valueOf(dateBuilder);
+                }
+
+
             }
         });
 
@@ -73,9 +95,15 @@ public class BookAppointment extends AppCompatActivity {
                 }
                 else{
                     selectedTime = time.getSelectedItem().toString();
-                    str="Appointment booking successful";
-                    Toast.makeText(BookAppointment.this,str,Toast.LENGTH_SHORT).show();
-                   // isSelected = databaseHelper.addAppointment(,intent.getStringExtra("radio"),date,time,meth);
+                    isSelected = databaseHelper.addAppointment(userID,provID,service,date,selectedTime,meth);
+                    if(isSelected){
+                        Toast.makeText(BookAppointment.this,"Appointment booking successful",Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(BookAppointment.this,"Error to book an Appointment",Toast.LENGTH_SHORT).show();
+                    }
+
+
                 }
                // Toast.makeText(BookAppointment.this,str,Toast.LENGTH_SHORT).show();
             }
