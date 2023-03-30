@@ -33,7 +33,7 @@ public class IndividualUser extends AppCompatActivity {
 
     String uName,uPass,uFullName,uEmail,uCell,uAddress,uCity;
 
-    int userID;
+    int userID, provID;
 
 
     @Override
@@ -53,6 +53,8 @@ public class IndividualUser extends AppCompatActivity {
         Button btnSave = findViewById(R.id.btnUserSave);
         databaseHelper = new DatabaseHelper(this);
         action = sharedPreferences.getString("ACTION","");
+        userType = sharedPreferences.getString("USERTYPE","");
+        provID = sharedPreferences.getInt("PROV_ID",0);
 
 
 
@@ -151,15 +153,14 @@ public class IndividualUser extends AppCompatActivity {
                     setFieldsEnabled();
                     return true;
                 case R.id.menu:
-                    if(userType.equals("Provider")){
-
-                        startActivity(new Intent(IndividualUser.this, ProviderMenu.class));
-                    } else if (action.equals("ADD")) {
-                        startActivity(new Intent(IndividualUser.this, ProviderMenu.class));
-                    } else if(userType.equals("Customer")){
-                        startActivity(new Intent(IndividualUser.this, CustomerMenu.class));
-                    }
+                    if(userType.equals("Customer")){
+                    startActivity(new Intent(IndividualUser.this, CustomerMenu.class));
                     return true;
+                    }
+                    else if(userType.equals("Provider") || action.equals("ADD")){
+                        startActivity(new Intent(IndividualUser.this, ProviderMenu.class));
+                        return true;
+                    }
                 default:
                     return false;
             }

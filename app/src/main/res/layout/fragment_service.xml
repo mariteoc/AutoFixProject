@@ -1,14 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frag_service"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ServiceFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="369dp"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtServiceTitle"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:background="#AEBF9A"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="ServiceTitle"
+            android:textColor="#034A59"
+            android:textSize="34sp" />
+
+        <TextView
+            android:id="@+id/txtServiceDesc"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="#AEBF9A"
+            android:paddingLeft="20sp"
+            android:paddingTop="20dp"
+            android:text="Description"
+            android:textColor="#034A59"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/txtServPrice"
+            android:layout_width="match_parent"
+            android:layout_height="98dp"
+            android:background="#AEBF9A"
+            android:gravity="center_horizontal|center_vertical"
+            android:paddingTop="5dp"
+            android:text="$000,00"
+            android:textColor="#034A59"
+            android:textSize="24sp" />
+    </LinearLayout>
 
 </FrameLayout>

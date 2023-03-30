@@ -1,6 +1,7 @@
 package com.example.autofix;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
@@ -17,7 +18,7 @@ import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
 
-public class Appointments extends AppCompatActivity {
+public class Appointments extends AppCompatActivity implements FragCommunicator {
 
     TabLayout tabLayout;
     ViewPager2 viewPager2;
@@ -60,19 +61,6 @@ public class Appointments extends AppCompatActivity {
         });
 
     }
-//        Button btnAppointment = findViewById(R.id.btnAppointment);
-
-//        btnAppointment.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-////                FragmentManager fm = getSupportFragmentManager();
-////                FragmentTransaction ft = fm.beginTransaction();
-////                AppointmentFragment f1 = new AppointmentFragment();
-////                ft.add(R.id.fragmentContainerView,f1);
-////                ft.commit();
-//            }
-//        });
-//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -93,4 +81,25 @@ public class Appointments extends AppCompatActivity {
             return false;
         }
     }
+
+    @Override
+    public void sendData(int serviceID) {
+
+    }
+
+//    @Override
+//    public void sendData(int serviceID) {
+//        FragmentManager fm = getSupportFragmentManager();
+//        FragmentTransaction ft = fm.beginTransaction();
+//        Bundle bundle = new Bundle();
+//        bundle.putInt("SERVICE_ID",serviceID);
+//        ServiceFragment serviceFragment = (ServiceFragment) viewPagerAdapter.createFragment(1);
+//        serviceFragment.setArguments(bundle);
+//        viewPagerAdapter.notifyDataSetChanged();
+//        ft.commitNowAllowingStateLoss();
+//
+//
+//
+//    }
+
 }

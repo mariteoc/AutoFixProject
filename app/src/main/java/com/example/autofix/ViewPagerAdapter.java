@@ -13,14 +13,12 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        switch (position){
-            case 0:
-                return new AppointmentFragment();
-            case 1:
-                return new ServiceFragment();
-            default:
-                return new AppointmentFragment();
+        if (position == 0) {
+            return new AppointmentFragment();
         }
+        else{
+                return new ServiceFragment();
+            }
     }
 
     @Override

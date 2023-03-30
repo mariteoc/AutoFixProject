@@ -98,6 +98,7 @@ public class BookAppointment extends AppCompatActivity {
                     isSelected = databaseHelper.addAppointment(userID,provID,service,date,selectedTime,meth);
                     if(isSelected){
                         Toast.makeText(BookAppointment.this,"Appointment booking successful",Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(BookAppointment.this,Appointments.class));
                     }
                     else{
                         Toast.makeText(BookAppointment.this,"Error to book an Appointment",Toast.LENGTH_SHORT).show();

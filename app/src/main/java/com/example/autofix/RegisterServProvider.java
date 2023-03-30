@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
@@ -18,6 +19,7 @@ public class RegisterServProvider extends AppCompatActivity {
 
     DatabaseHelper databaseHelper;
     StringBuilder message= new StringBuilder();
+    int provID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +76,11 @@ public class RegisterServProvider extends AppCompatActivity {
                 else{
                     isInserted = databaseHelper.addServiceProvider(serviceProvider.getText().toString(),
                             phone.getText().toString(),city.getText().toString());
+                    Cursor cursor = databaseHelper.selectAProvider(serviceProvider.getText().toString());
+                    cursor.moveToFirst();
+                    provID = cursor.getInt(0);
+                    editor.putInt("PROV_ID",provID);
+                    editor.apply();
                     if(isInserted){
                         Toast.makeText(RegisterServProvider.this,"Service Provider Saved", Toast.LENGTH_SHORT).show();
                         serviceProvider.setText("");

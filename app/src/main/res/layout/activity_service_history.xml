@@ -6,13 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".ServiceHistory">
 
-    <TextView
-        android:id="@+id/txtServiceHistory"
-        android:layout_width="240dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="85dp"
-        android:text="Output here"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerApp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

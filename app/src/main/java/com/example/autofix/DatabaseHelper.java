@@ -84,7 +84,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + USER_ID + " INTEGER,"
                 + PROVIDER_ID + " INTEGER,"
                 + SERVICE1_ID + " INTEGER,"
-                + DATE + " TEXT,"
+                + DATE + " DATE,"
                 + TIME + " TEXT,"
                 + APP_TYPE + " INTEGER"
                 + ")";
@@ -225,12 +225,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor selectCustomerAppointments(int uID){
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-        String query = "SELECT * FROM " + APPOINTMENT_TABLE +
-                " WHERE user_id =?";
+        String query = "SELECT service.name,ServiceProvider.ServProviderName, ServiceProvider.City, date,time,app_type,appointment.service1_id FROM appointment " +
+                "inner join ServiceProvider on appointment.provider_id = ServiceProvider.provider_id " +
+                "inner join service on appointment.service1_id = service.service_id " +
+                " WHERE appointment.user_id =?";
         Cursor cursor = sqLiteDatabase.rawQuery(query,new String[]{String.valueOf(uID)});
         return cursor;
     }
 
+    public Cursor selectAService(int serviceID) {
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        String query = "SELECT name,description,price FROM " + SERVICE_TABLE +
+                " WHERE service_id =?";
+        Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{String.valueOf(serviceID)});
+        return cursor;
+    }
+
+    public Cursor selectAProvider(String provName) {
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        String query = "SELECT provider_id FROM " + SERV_PROVIDER_TABLE +
+                " WHERE ServProviderName =?";
+        Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{provName});
+        return cursor;
+    }
 
 
 }
