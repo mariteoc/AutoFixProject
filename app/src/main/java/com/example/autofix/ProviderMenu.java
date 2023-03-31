@@ -48,7 +48,7 @@ public class ProviderMenu extends AppCompatActivity {
                         startActivity(new Intent(ProviderMenu.this,All_Users.class));
                         break;
                     case 1:
-                        startActivity(new Intent(ProviderMenu.this,Reminders.class));
+                        startActivity(new Intent(ProviderMenu.this,Appointments.class));
                         break;
                     case 2:
                         startActivity(new Intent(ProviderMenu.this,Reminders.class));

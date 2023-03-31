@@ -1,9 +1,11 @@
 package com.example.autofix;
 
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,11 +23,12 @@ public class ServiceFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         databaseHelper = new DatabaseHelper(getActivity());
-
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        String str = sharedPreferences.getString("USERTYPE","");
         getParentFragmentManager().setFragmentResultListener("SERVICE_ID", this, (requestKey, result) -> {
             serviceID = result.getInt("SERVICE_ID");
 
-
+        if(str.equals("Customer")){
             Cursor cursor = databaseHelper.selectAService(serviceID);
             if(cursor.getCount()>0){
                 while (cursor.moveToNext()){
@@ -40,6 +43,24 @@ public class ServiceFragment extends Fragment {
                 description.setText("");
                 price.setText("");
             }
+        }
+        if(str.equals("Provider")){
+            Cursor cursor = databaseHelper.selectAService(serviceID);
+            if(cursor.getCount()>0){
+                while (cursor.moveToNext()){
+                    service.setText(cursor.getString(0));
+                    description.setText(cursor.getString(1));
+                    price.setText("$ "+ cursor.getString(2));
+
+                }
+            }
+            else{
+                service.setText("No service data");
+                description.setText("");
+                price.setText("");
+            }
+        }
+
 
         });
 

@@ -33,7 +33,7 @@ public class IndividualService extends AppCompatActivity {
         Button btnSave = findViewById(R.id.btnSaveServ);
         databaseHelper = new DatabaseHelper(this);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        providerID = sharedPreferences.getInt("PROV_ID",0);
+        providerID = sharedPreferences.getInt("PROVIDER_ID",0);
 
 
         btnSave.setOnClickListener(new View.OnClickListener() {

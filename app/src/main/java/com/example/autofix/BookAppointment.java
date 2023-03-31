@@ -46,7 +46,7 @@ public class BookAppointment extends AppCompatActivity {
         Intent intent = getIntent();
 //        SharedPreferences.Editor editor = sharedPreferences.edit();
         userID = sharedPreferences.getInt("USER_ID",0);
-        provID = sharedPreferences.getInt("PROV_ID",0);
+        provID = sharedPreferences.getInt("PROVIDER_ID",0);
         service = intent.getIntExtra("SERV_ID",0);
 
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {

@@ -136,7 +136,7 @@ public class ServProviders extends AppCompatActivity implements RecyclerViewInt{
     @Override
     public void onItemClick(int position) {
         Intent intent = new Intent(ServProviders.this, Services.class);
-        editor.putInt("PROV_ID", providersModels.get(position).getProvID());
+        editor.putInt("PROVIDER_ID", providersModels.get(position).getProvID());
         editor.apply();
         startActivity(intent);
 

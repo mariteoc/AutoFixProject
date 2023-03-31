@@ -7,8 +7,11 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -72,8 +75,18 @@ public class Appointments extends AppCompatActivity implements FragCommunicator 
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
+        Context context = getApplicationContext();
+        SharedPreferences editor = PreferenceManager.getDefaultSharedPreferences(context);
+        String str = editor.getString("USERTYPE","");
+
         if (item.getItemId() == R.id.menu){
-            startActivity(new Intent(Appointments.this, CustomerMenu.class));
+            if (str.equals("Customer")){
+                startActivity(new Intent(Appointments.this, CustomerMenu.class));
+
+            }
+            if (str.equals("Provider")){
+                startActivity(new Intent(Appointments.this, ProviderMenu.class));
+            }
             return true;
         }
         else{
