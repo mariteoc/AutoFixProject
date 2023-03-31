@@ -59,14 +59,14 @@ public class ServiceReport extends AppCompatActivity {
                     Cursor cursor = databaseHelper.generateReport(Integer.parseInt(appointment.getText().toString()));
                     if(cursor.getCount() >0){
                         while(cursor.moveToNext()){
-                            servProv = cursor.getString(2);
-                            city = cursor.getString(3);
-                            servExec = cursor.getString(1);
-                            date = cursor.getString(4);
-                            time = cursor.getString(5);
-                            customer = cursor.getString(6);
-                            phone = cursor.getString(7);
-                            email = cursor.getString(8);
+                            servProv = cursor.getString(1);
+                            city = cursor.getString(2);
+                            servExec = cursor.getString(0);
+                            date = cursor.getString(3);
+                            time = cursor.getString(4);
+                            customer = cursor.getString(5);
+                            phone = cursor.getString(6);
+                            email = cursor.getString(7);
 
                             OutServProv.setText(servProv);
                             OutCity.setText(city);
