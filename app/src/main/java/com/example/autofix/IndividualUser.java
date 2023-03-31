@@ -87,13 +87,19 @@ public class IndividualUser extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (areEditTextsFilled()) {
-                    if (action.equals("EDIT")) {
+                    if (action.equals("EDIT") || action.equals("VIEW")) {
                         getFieldsValue();
                         userType = "Customer";
                         isUpdated = databaseHelper.updateUser(userID,uName,uPass,uFullName,uEmail,uCell,userType,uAddress,uCity);
                         if(isUpdated){
                             Toast.makeText(IndividualUser.this, "User updated", Toast.LENGTH_SHORT).show();
                             setFieldsEmpty();
+                            if(action.equals("VIEW")){
+                                startActivity(new Intent(IndividualUser.this, CustomerMenu.class));
+                            }
+                            else{
+                                startActivity(new Intent(IndividualUser.this, All_Users.class));
+                            }
                         }
                         else{
                             Toast.makeText(IndividualUser.this, "Error to update the User", Toast.LENGTH_SHORT).show();
@@ -101,7 +107,7 @@ public class IndividualUser extends AppCompatActivity {
                     } else if(action.equals("ADD")) {
                         userType = "Customer";
                         getFieldsValue();
-                        isInserted = databaseHelper.addUser(uName,uPass,uFullName,uEmail,uCell,userType,uAddress,uCity);
+                        isInserted = databaseHelper.addUser(uName,uPass,uFullName,uEmail,uCell,userType,uAddress,uCity,provID);
                         userType = "Provider";
                         if (isInserted) {
                             Toast.makeText(IndividualUser.this, "User added", Toast.LENGTH_SHORT).show();
@@ -116,8 +122,18 @@ public class IndividualUser extends AppCompatActivity {
                         } else {
                             Toast.makeText(IndividualUser.this, "Error to add the User", Toast.LENGTH_SHORT).show();
                         }
+                    } else if (action.equals("REG")) {
+                        getFieldsValue();
+                        isInserted = databaseHelper.addUser(uName,uPass,uFullName,uEmail,uCell,userType,uAddress,uCity,provID);
+                        if (isInserted) {
+                            Toast.makeText(IndividualUser.this, "User added", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(IndividualUser.this,Login.class));
+                        } else {
+                            Toast.makeText(IndividualUser.this, "Error to add the User", Toast.LENGTH_SHORT).show();
+                        }
                     }
-                }
+
+                    }
                 else{
                         Toast.makeText(IndividualUser.this, "Make sure all fields were filled", Toast.LENGTH_SHORT).show();
                     }
@@ -160,6 +176,17 @@ public class IndividualUser extends AppCompatActivity {
                     else if(userType.equals("Provider") || action.equals("ADD")){
                         startActivity(new Intent(IndividualUser.this, ProviderMenu.class));
                         return true;
+                    }
+                case R.id.delete:
+                    boolean isDeleted;
+
+                    isDeleted = databaseHelper.deleteAUser(userID);
+                    if(isDeleted){
+                        Toast.makeText(IndividualUser.this,"The user was deleted", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(IndividualUser.this, All_Users.class));
+                    }
+                    else{
+                        Toast.makeText(IndividualUser.this,"We couldn't delete the user", Toast.LENGTH_SHORT).show();
                     }
                 default:
                     return false;

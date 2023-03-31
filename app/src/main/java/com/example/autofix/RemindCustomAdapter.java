@@ -11,16 +11,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class Appoint_CustomAdap extends RecyclerView.Adapter<Appoint_CustomAdap.MyViewHolder>{
+public class RemindCustomAdapter extends RecyclerView.Adapter<RemindCustomAdapter.MyViewHolder>{
     Context context;
-    ArrayList<AppointmentsModel> appointmentsModels;
+    ArrayList<RemindersModel> remindersModels;
     final RecyclerViewInt recyclerViewInt;
 
 
 
-    public Appoint_CustomAdap(Context context, ArrayList<AppointmentsModel> appointmentsModels, RecyclerViewInt recyclerViewInt){
+    public RemindCustomAdapter(Context context, ArrayList<RemindersModel> remindersModels, RecyclerViewInt recyclerViewInt){
         this.context = context;
-        this.appointmentsModels = appointmentsModels;
+        this.remindersModels = remindersModels;
         this.recyclerViewInt = recyclerViewInt;
 
     }
@@ -28,23 +28,22 @@ public class Appoint_CustomAdap extends RecyclerView.Adapter<Appoint_CustomAdap.
 
     @NonNull
     @Override
-    public Appoint_CustomAdap.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RemindCustomAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from (context);
-        View view = inflater.inflate(R.layout.appointment_item,parent,false);
-        return new Appoint_CustomAdap.MyViewHolder(view,recyclerViewInt);
+        View view = inflater.inflate(R.layout.reminder_item,parent,false);
+        return new RemindCustomAdapter.MyViewHolder(view,recyclerViewInt);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Appoint_CustomAdap.MyViewHolder holder, int position) {
-        holder.txtDate.setText(appointmentsModels.get(position).getDate());
-        holder.txtService.setText(appointmentsModels.get(position).getService() + " Provider: " +
-                appointmentsModels.get(position).getProvider());
+    public void onBindViewHolder(@NonNull RemindCustomAdapter.MyViewHolder holder, int position) {
+        holder.txtDate.setText(remindersModels.get(position).getDate() + "    " +remindersModels.get(position).getTime());
+        holder.txtService.setText(remindersModels.get(position).getService());
     }
 
     @Override
     public int getItemCount() {
 
-        return appointmentsModels.size();
+        return remindersModels.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
@@ -59,7 +58,5 @@ public class Appoint_CustomAdap extends RecyclerView.Adapter<Appoint_CustomAdap.
 
         }
     }
-
-
 
 }

@@ -18,6 +18,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.util.Calendar;
 
 public class BookAppointment extends AppCompatActivity {
@@ -59,10 +61,14 @@ public class BookAppointment extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    if(dateBuilder.length() >0){
+                        dateBuilder.setLength(0);
+                    }
                     dateBuilder.append(Integer.toString(year) + "-");
                     dateBuilder.append(Integer.toString(month+1) + "-");
                     dateBuilder.append(Integer.toString(dayOfMonth));
                     date = String.valueOf(dateBuilder);
+
                 }
 
 
@@ -83,7 +89,7 @@ public class BookAppointment extends AppCompatActivity {
                     Toast.makeText(BookAppointment.this,str,Toast.LENGTH_SHORT).show();
                 }
 
-                if(date.length() == 0){
+                if(date == null){
                     str="You should select a date for the appointment";
                     Toast.makeText(BookAppointment.this,str,Toast.LENGTH_SHORT).show();
                 }
@@ -95,6 +101,7 @@ public class BookAppointment extends AppCompatActivity {
                 }
                 else{
                     selectedTime = time.getSelectedItem().toString();
+//                    Toast.makeText(BookAppointment.this,"USER: " + userID,Toast.LENGTH_LONG).show();
                     isSelected = databaseHelper.addAppointment(userID,provID,service,date,selectedTime,meth);
                     if(isSelected){
                         Toast.makeText(BookAppointment.this,"Appointment booking successful",Toast.LENGTH_SHORT).show();

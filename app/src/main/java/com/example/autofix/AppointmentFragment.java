@@ -39,7 +39,7 @@ public class AppointmentFragment extends Fragment {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         int userID = sharedPreferences.getInt("USER_ID",0);
 
-        Cursor cursor = databaseHelper.selectCustomerAppointments(userID);
+        Cursor cursor = databaseHelper.nextCustomerAppointment(userID);
         if(cursor.getCount()>0){
             while (cursor.moveToNext()) {
                     date.setText(cursor.getString(3) + "\n" +cursor.getString(4));
