@@ -294,6 +294,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = sqLiteDatabase.rawQuery(query,new String[]{String.valueOf(provID)});
         return cursor;
     }
+    public Cursor generateReport(int appID){
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        String query = "SELECT service.name,ServiceProvider.ServProviderName, ServiceProvider.City, date,time,user.fullname, user.phone, user.email FROM appointment " +
+                "inner join ServiceProvider on appointment.provider_id = ServiceProvider.provider_id " +
+                "inner join service on appointment.service1_id = service.service_id " +
+                "inner join user on appointment.user_id = user.id "+
+                " WHERE date < date('now') AND appointment.appointment_id =?";
+        Cursor cursor = sqLiteDatabase.rawQuery(query,new String[]{String.valueOf(appID)});
+        return cursor;
+    }
 
 
 }
