@@ -79,7 +79,7 @@ public class RegisterServProvider extends AppCompatActivity {
                     Cursor cursor = databaseHelper.selectAProvider(serviceProvider.getText().toString());
                     cursor.moveToFirst();
                     provID = cursor.getInt(0);
-                    editor.putInt("PROV_ID",provID);
+                    editor.putInt("PROVIDER_ID",provID);
                     editor.apply();
                     if(isInserted){
                         Toast.makeText(RegisterServProvider.this,"Service Provider Saved", Toast.LENGTH_SHORT).show();

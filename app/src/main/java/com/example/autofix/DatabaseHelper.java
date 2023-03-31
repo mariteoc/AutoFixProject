@@ -8,8 +8,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import kotlin.jvm.internal.TypeParameterReference;
-
 public class DatabaseHelper extends SQLiteOpenHelper {
 
 
@@ -154,7 +152,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return false;
 
     }
-
+//    public boolean anAppointment(int userId, int providerId, int serviceId, String date, String time, String aType){
+//        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+//        ContentValues values = new ContentValues();
+//        values.put(USER_ID,userId);
+//        values.put(PROVIDER_ID, providerId);
+//        values.put(SERVICE1_ID, serviceId);
+//        values.put(DATE, date);
+//        values.put(TIME, time);
+//        values.put(APP_TYPE,aType);
+//        long l =sqLiteDatabase.update(APPOINTMENT_TABLE,"PROVIDER_ID =?",PROVIDER_ID);
+//        if(l>0)
+//            return true;
+//        else
+//            return false;
+//
+//    }
     public boolean addServiceProvider(String provName, String phone, String city){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -279,6 +292,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "inner join service on appointment.service1_id = service.service_id " +
                 " WHERE date > date('now') AND appointment.provider_id =?";
         Cursor cursor = sqLiteDatabase.rawQuery(query,new String[]{String.valueOf(provID)});
+        return cursor;
+    }
+    public Cursor generateReport(int appID){
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        String query = "SELECT service.name,ServiceProvider.ServProviderName, ServiceProvider.City, date,time,user.fullname, user.phone, user.email FROM appointment " +
+                "inner join ServiceProvider on appointment.provider_id = ServiceProvider.provider_id " +
+                "inner join service on appointment.service1_id = service.service_id " +
+                "inner join user on appointment.user_id = user.id "+
+                " WHERE date < date('now') AND appointment.appointment_id =?";
+        Cursor cursor = sqLiteDatabase.rawQuery(query,new String[]{String.valueOf(appID)});
         return cursor;
     }
 

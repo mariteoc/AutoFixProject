@@ -54,7 +54,7 @@ public class IndividualUser extends AppCompatActivity {
         databaseHelper = new DatabaseHelper(this);
         action = sharedPreferences.getString("ACTION","");
         userType = sharedPreferences.getString("USERTYPE","");
-        provID = sharedPreferences.getInt("PROV_ID",0);
+        provID = sharedPreferences.getInt("PROVIDER_ID",0);
 
 
 

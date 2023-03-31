@@ -45,7 +45,7 @@ public class Services extends AppCompatActivity {
 //        RadioButton rdb5 = (RadioButton) findViewById(R.id.rdbServ5);
 //        RadioButton rdb6 = (RadioButton) findViewById(R.id.rdbServ6);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        int provID = sharedPreferences.getInt("PROV_ID", 0);
+        int provID = sharedPreferences.getInt("PROVIDER_ID", 0);
 
 
         Cursor cursor = databaseHelper.selectProviderServices(provID);

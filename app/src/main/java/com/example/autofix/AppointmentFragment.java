@@ -1,5 +1,6 @@
 package com.example.autofix;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.io.Console;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -38,10 +40,13 @@ public class AppointmentFragment extends Fragment {
         TextView city = view.findViewById(R.id.txtProvCity);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         int userID = sharedPreferences.getInt("USER_ID",0);
+        int providerID = sharedPreferences.getInt("PROVIDER_ID",0);
+        String str = sharedPreferences.getString("USERTYPE","");
+        if(str.equals("Customer")){
 
-        Cursor cursor = databaseHelper.nextCustomerAppointment(userID);
-        if(cursor.getCount()>0){
-            while (cursor.moveToNext()) {
+            Cursor cursor = databaseHelper.nextCustomerAppointment(userID);
+            if(cursor.getCount()>0){
+                while (cursor.moveToNext()) {
                     date.setText(cursor.getString(3) + "\n" +cursor.getString(4));
                     service.setText(cursor.getString(0));
                     appType.setText(cursor.getString(5));
@@ -51,16 +56,49 @@ public class AppointmentFragment extends Fragment {
                 }
 
             }
-        else{
-            date.setText("No upcoming appointments");
-            service.setText("");
-            appType.setText("");
-            provider.setText("");
-            city.setText("");
+            else{
+                date.setText("No upcoming appointments");
+                service.setText("");
+                appType.setText("");
+                provider.setText("");
+                city.setText("");
+            }
+            cursor.close();
         }
-        cursor.close();
+        if(str.equals("Provider")){
+            Cursor cursor = databaseHelper.selectProviderAppointments(providerID);
+            if(cursor.getCount()>0){
+                while(cursor.moveToNext()){
+                    date.setText(cursor.getString(3) + "\n" + cursor.getString(4));
+                    service.setText(cursor.getString(0));
+                    appType.setText(cursor.getString(5));
+                    provider.setText(cursor.getString(1));
+                    city.setText(cursor.getString(2));
+                    serviceID = cursor.getInt(6);
+                }
+            }
+            else{
+                date.setText("No upcoming appointments");
+                service.setText("");
+                appType.setText("");
+                provider.setText("");
+                city.setText("");
+            }
+
+            cursor.close();
+
+        }
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         return view;
+
     }
+
 
     public void onViewCreated(View view, Bundle savedInstance){
         super.onViewCreated(view,savedInstance);
